@@ -1,0 +1,27 @@
+<%# The "base" layout contains boilerplate common to *all* views. %>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Dylans Mp Project <%= Rails.application.config.version %> (<%= l(Rails.application.config.version_time) %>) -->
+    <%= capybara_lockstep if defined?(Capybara::Lockstep) %>
+    <title>
+      <%= "#{strip_tags(yield(:title))} – " if content_for?(:title) %>
+      Dylans Mp Project
+    </title>
+    <%# Specifies the default name of home screen bookmark in iOS %>
+    <meta name="apple-mobile-web-app-title" content="Dylans Mp Project">
+
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <%= yield(:head) %>  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>

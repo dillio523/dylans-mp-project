@@ -1,0 +1,5 @@
+---
+:queues:
+  - default
+
+:concurrency: <%= ENV.fetch("SIDEKIQ_CONCURRENCY", "1") %>
