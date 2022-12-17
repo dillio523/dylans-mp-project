@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.2"
 
+gem "rest-client"
+
 gem "active_type"
 gem "bcrypt"
 gem "bootsnap", require: false
@@ -16,6 +18,7 @@ gem "rails", "~> 7.0.4"
 gem "sprockets-rails"
 gem "stimulus-rails"
 gem "turbo-rails"
+
 
 group :production do
   gem "postmark-rails"
