@@ -137,6 +137,9 @@ GEM
     importmap-rails (1.1.5)
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
+    jbuilder (2.11.5)
+      actionview (>= 5.0.0)
+      activesupport (>= 5.0.0)
     json (2.6.3)
     launchy (2.5.0)
       addressable (~> 2.7)
@@ -329,6 +332,7 @@ DEPENDENCIES
   erb_lint
   good_migrations
   importmap-rails
+  jbuilder
   launchy
   letter_opener
   minitest-ci

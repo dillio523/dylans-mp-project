@@ -5,6 +5,9 @@ ruby "3.1.2"
 
 gem "rest-client"
 
+# Build JSON APIs with ease [https://github.com/rails/jbuilder]
+gem "jbuilder"
+
 gem "active_type"
 gem "bcrypt"
 gem "bootsnap", require: false
