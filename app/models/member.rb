@@ -24,6 +24,7 @@
 #  updated_at                  :datetime         not null
 #  membership_end_reason_id    :integer
 #  membership_from_id          :integer
+#  party_id                    :integer
 #  status_id                   :integer
 #
 class Member < ApplicationRecord

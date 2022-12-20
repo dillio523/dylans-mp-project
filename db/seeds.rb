@@ -49,6 +49,7 @@ create_member
     name_full_title: member_data["nameFullTitle"],
     name_address_as: member_data["nameAddressAs"],
     party: member_data["latestParty"]["name"],
+    party_id: member_data["latestParty"]["id"],
     gender: member_data["gender"],
     membership_from: member_data["latestHouseMembership"]["membershipFrom"],
     membership_from_id: member_data["latestHouseMembership"]["membershipFromId"],
