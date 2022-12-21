@@ -52,7 +52,7 @@ create_member
     party_id: member_data["latestParty"]["id"],
     gender: member_data["gender"],
     membership_from: member_data["latestHouseMembership"]["membershipFrom"],
-    membership_from_id: member_data["latestHouseMembership"]["membershipFromId"],
+    constituency_id: member_data["latestHouseMembership"]["membershipFromId"],
     house: member_data["latestHouseMembership"]["house"],
     membership_start_date: member_data["latestHouseMembership"]["membershipStartDate"],
     membership_end_date: member_data["latestHouseMembership"]["membershipEndDate"],

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_20_011017) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_21_094635) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,7 +24,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_20_011017) do
     t.string "party"
     t.string "gender"
     t.string "membership_from"
-    t.integer "membership_from_id"
+    t.integer "constituency_id"
     t.integer "house"
     t.datetime "membership_start_date"
     t.datetime "membership_end_date"

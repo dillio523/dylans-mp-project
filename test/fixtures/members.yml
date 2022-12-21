@@ -22,8 +22,8 @@
 #  thumbnail_url               :string
 #  created_at                  :datetime         not null
 #  updated_at                  :datetime         not null
+#  constituency_id             :integer
 #  membership_end_reason_id    :integer
-#  membership_from_id          :integer
 #  party_id                    :integer
 #  status_id                   :integer
 #
