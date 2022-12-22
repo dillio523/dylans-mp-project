@@ -6,14 +6,14 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 def create_member
-  @skip = 0
+  @member_skip = 0
   @members = []
   loop do
-    puts "Current skip value: #{@skip}"
+    puts "Current member_skip value: #{@member_skip}"
     # begin block to handle any exceptions
     begin
       # http get request from the restclient library
-      @response = RestClient.get("https://members-api.parliament.uk/api/Members/Search?House=1&IsCurrentMember=true&skip=#{@skip}&take=20")
+      @response = RestClient.get("https://members-api.parliament.uk/api/Members/Search?House=1&IsCurrentMember=true&skip=#{@member_skip}&take=20")
       # retrieve the body of the @response object and parse it into a ruby hash
       @response_body = @response.body
       @parsed = JSON.parse(@response_body)
@@ -27,7 +27,7 @@ def create_member
         puts @member # prints the name of the member
         @members.push(@member)
       end
-      @skip += 20
+      @member_skip += 20
       # puts "Current length of @members: #{@members.length}"
       # Handle errors or exceptions
     rescue RestClient::ExceptionWithResponse => e
@@ -65,5 +65,50 @@ create_member
     status_id: member_data["latestHouseMembership"]["membershipStatus"]["statusId"],
     status_start_date: member_data["latestHouseMembership"]["membershipStatus"]["statusStartDate"],
     thumbnail_url: member_data["thumbnailUrl"]
+  )
+end
+
+def create_constituency
+  @constituency_skip = 0
+  @constituencies = []
+  loop do
+    puts "Current constituency_skip value: #{@constituency_skip}"
+    # begin block to handle any exceptions
+    begin
+      # http get request from the restclient library
+      @response = RestClient.get("https://members-api.parliament.uk/api/Location/Constituency/Search?skip=#{@constituency_skip}&take=20")
+
+      # retrieve the body of the @response object and parse it into a ruby hash
+      @response_body = @response.body
+      @parsed = JSON.parse(@response_body)
+      # break the loop if @parsed is empty
+      if @parsed["items"] == []
+        break
+      end
+      @parsed["items"].each do |individual|
+        @constituency =  individual["value"]
+        # puts @constituency # prints the name of the constituency
+        @constituencies.push(@constituency)
+        puts @constituencies.length # prints the name of the constituency
+      end
+      @constituency_skip += 20
+      # puts "Current length of @constituencys: #{@constituencys.length}"
+      # Handle errors or exceptions
+    rescue RestClient::ExceptionWithResponse => e
+      puts "Error: #{e.message}"
+      puts "Status code: #{e.response.code}"
+      break if @repos.empty?
+    end
+  end
+end
+
+# call the create_constituency function
+create_constituency
+
+# iterate over the @constituencys array and create a new constituency object for each constituency
+@constituencies.each do |constituency_data|
+  Constituency.create!(
+    constituency_id: constituency_data["id"],
+    name: constituency_data["name"]
   )
 end

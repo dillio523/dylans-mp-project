@@ -10,6 +10,5 @@
 #
 class Constituency < ApplicationRecord
   validates :name, presence: true
-  validates :id, presence: true, uniqueness: true
-  validates :constituency_id, presence: true, uniqueness: true
+  validates :constituency_id, presence: true
 end

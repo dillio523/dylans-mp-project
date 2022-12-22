@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'constituencies/index'
   get 'pages/home'
   get 'users/index'
   get 'users/show'
@@ -14,6 +15,7 @@ Rails.application.routes.draw do
   post '/users', to: 'users#create'
   get '/success', to: 'users#success'
   resources :members
+  resources :constituencies
 
 
   # Defines the root path route ("/")
