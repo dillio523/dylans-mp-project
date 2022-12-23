@@ -28,7 +28,7 @@ def create_member
         @members.push(@member)
       end
       @member_skip += 20
-      # puts "Current length of @members: #{@members.length}"
+      puts "Current length of @members: #{@members.length}"
       # Handle errors or exceptions
     rescue RestClient::ExceptionWithResponse => e
       puts "Error: #{e.message}"
@@ -41,29 +41,18 @@ end
 # call the create_member function
 create_member
 
+
 # iterate over the @members array and create a new Member object for each member
 @members.each do |member_data|
   Member.create!(
-    name_list_as: member_data["nameListAs"],
+    member_id: member_data["id"],
     name_display_as: member_data["nameDisplayAs"],
-    name_full_title: member_data["nameFullTitle"],
-    name_address_as: member_data["nameAddressAs"],
     party: member_data["latestParty"]["name"],
     party_id: member_data["latestParty"]["id"],
     gender: member_data["gender"],
-    membership_from: member_data["latestHouseMembership"]["membershipFrom"],
     constituency_id: member_data["latestHouseMembership"]["membershipFromId"],
     house: member_data["latestHouseMembership"]["house"],
     membership_start_date: member_data["latestHouseMembership"]["membershipStartDate"],
-    membership_end_date: member_data["latestHouseMembership"]["membershipEndDate"],
-    membership_end_reason: member_data["latestHouseMembership"]["membershipEndReason"],
-    membership_end_reason_notes: member_data["latestHouseMembership"]["membershipEndReasonNotes"],
-    membership_end_reason_id: member_data["latestHouseMembership"]["membershipEndReasonId"],
-    membership_status: member_data["latestHouseMembership"]["membershipStatus"]["statusIsActive"],
-    status_description: member_data["latestHouseMembership"]["membershipStatus"]["statusDescription"],
-    status_notes: member_data["latestHouseMembership"]["membershipStatus"]["statusNotes"],
-    status_id: member_data["latestHouseMembership"]["membershipStatus"]["statusId"],
-    status_start_date: member_data["latestHouseMembership"]["membershipStatus"]["statusStartDate"],
     thumbnail_url: member_data["thumbnailUrl"]
   )
 end
@@ -89,10 +78,10 @@ def create_constituency
         @constituency =  individual["value"]
         # puts @constituency # prints the name of the constituency
         @constituencies.push(@constituency)
-        puts @constituencies.length # prints the name of the constituency
+        # puts @constituencies.length # prints the name of the constituency
       end
       @constituency_skip += 20
-      # puts "Current length of @constituencys: #{@constituencys.length}"
+      puts "Current length of @constituencys: #{@constituencies.length}"
       # Handle errors or exceptions
     rescue RestClient::ExceptionWithResponse => e
       puts "Error: #{e.message}"

@@ -1,9 +1,5 @@
 <% @members.each do |member| %>
-  <%= member.name_list_as %>
+<%= member.name_display_as %>
   <%= member.party_id %>
-  <%= member.constituency_id %>
-  <!--<%= member["FullTitle"] %><br>
-  <%= member["FullName"] %><br>
-  <%= member["House"] %><br>
-  <%= member["Email"] %><br> -->
+  <img src="<%= member.thumbnail_url %>" alt="mp">
 <% end %>
