@@ -1,3 +1,5 @@
 <% @constituencies.each do |constituency| %>
-  <%= constituency.id %>
+  <% if constituency.member.nil? %>
+    <%= constituency.name %>
+  <% end %>
 <% end %>

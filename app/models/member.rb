@@ -2,7 +2,7 @@
 #
 # Table name: members
 #
-#  id                    :bigint           not null, primary key
+#  id                    :bigint           not null
 #  gender                :string
 #  house                 :integer
 #  membership_start_date :datetime
@@ -12,9 +12,10 @@
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
 #  constituency_id       :integer
-#  member_id             :integer
+#  member_id             :integer          primary key
 #  party_id              :integer
 #
 class Member < ApplicationRecord
-  
+  self.primary_key = :member_id
+  belongs_to :constituency
 end
