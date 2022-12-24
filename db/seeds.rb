@@ -1,10 +1,4 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+
 
 def create_constituency
   puts "making"
@@ -46,7 +40,7 @@ create_constituency
 
 # iterate over the @constituencies array and create a new constituency object for each constituency
 @constituencies.each do |constituency_data|
-  # see if the seat is vacant so can set when constituency is created 
+  # see if the seat is vacant so can set when constituency is created
   if constituency_data["currentRepresentation"].nil?
     seat_vacant = true
   else
@@ -77,7 +71,6 @@ def create_member
       end
       @parsed["items"].each do |individual|
         @member =  individual["value"]
-        # @member["name"] = individual["value"]["nameListAs"] # access the name of the member
         # puts @member # prints the name of the member
         @members.push(@member)
       end
@@ -109,12 +102,5 @@ create_member
     membership_start_date: member_data["latestHouseMembership"]["membershipStartDate"],
     thumbnail_url: member_data["thumbnailUrl"]
   )
-  #
-end
 
-def empty_seater_check
-  @constits = Constituency.all
-  @constits.each do
-
-  end
 end
