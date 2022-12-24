@@ -1,0 +1,5 @@
+<% @constituencies.each do |constituency| %>
+  <% if constituency.member.nil? %>
+    <%= constituency.name %>
+  <% end %>
+<% end %>
