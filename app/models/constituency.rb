@@ -14,4 +14,5 @@ class Constituency < ApplicationRecord
   # validates :constituency_id, presence: true
   self.primary_key = :constituency_id
   has_one :member, dependent: :destroy
+  has_many :postcodes
 end

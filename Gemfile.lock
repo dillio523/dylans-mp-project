@@ -56,6 +56,8 @@ GEM
     activerecord (7.0.4)
       activemodel (= 7.0.4)
       activesupport (= 7.0.4)
+    activerecord-import (1.4.1)
+      activerecord (>= 4.2)
     activestorage (7.0.4)
       actionpack (= 7.0.4)
       activejob (= 7.0.4)
@@ -109,6 +111,7 @@ GEM
     concurrent-ruby (1.1.10)
     connection_pool (2.3.0)
     crass (1.0.6)
+    csv (3.2.6)
     date (3.3.2)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
@@ -319,6 +322,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_type
+  activerecord-import (~> 1.4)
   amazing_print
   annotate
   bcrypt
@@ -328,6 +332,7 @@ DEPENDENCIES
   byebug
   capybara
   capybara-lockstep
+  csv (~> 3.2)
   dotenv-rails
   erb_lint
   good_migrations

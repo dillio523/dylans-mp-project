@@ -58,3 +58,7 @@ group :test do
   gem "shoulda-matchers"
   gem "webdrivers"
 end
+
+gem "csv", "~> 3.2"
+
+gem "activerecord-import", "~> 1.4"
