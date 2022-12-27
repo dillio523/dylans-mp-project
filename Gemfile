@@ -5,6 +5,8 @@ ruby "3.1.2"
 
 gem "rest-client"
 
+gem 'smarter_csv', '~> 1.7', '>= 1.7.1'
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 

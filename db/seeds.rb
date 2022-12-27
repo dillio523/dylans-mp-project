@@ -1,5 +1,30 @@
 require 'csv'
 require 'activerecord-import'
+require 'smarter_csv'
+
+
+def link_postcodes_to_constituencies
+  # Load the CSV file and parse it into a Ruby hash
+  constituency_codes = SmarterCSV.process(File.open('/Users/dylandeehan/Downloads/postcodeCSV/constituency_codes.csv')).each_with_object({}) { |row, hash| hash[row[:PCON20CD]] = row[:PCON20NM] }
+  # Find all the Postcode records that have a constituency_code
+  postcodes = Postcode.where.not(constituency_code: nil)
+  puts "these are the postcodes #{postcodes.inspect}"
+  # Iterate over the Postcode records
+  postcodes.each do |postcode|
+    # Find the Constituency record with the matching name
+    constituency = Constituency.find_by(name: constituency_codes[postcode.constituency_code])
+    if constituency
+      # Set the constituency_id on the Postcode record
+      postcode.constituency_id = constituency.id
+      postcode.save!
+    end
+  end
+end
+
+
+
+
+
 
 def seed_postcodes(csv_file_path)
   data = []
@@ -13,6 +38,7 @@ def seed_postcodes(csv_file_path)
     data << extract_row_data(row)
     counter += 1
     print_progress(counter, total_postcodes)
+    break if counter == 5000
   end
 
   puts "Total number of postcodes: #{total_postcodes}"
@@ -53,6 +79,7 @@ def print_percentage_processed(batch_results, total_postcodes)
 end
 
 seed_postcodes("/Users/dylandeehan/Downloads/postcodeCSV/postcodes.csv")
+
 
 def create_constituency
   puts "making"
@@ -106,7 +133,7 @@ create_constituency
     seat_vacant: seat_vacant
   )
 end
-
+link_postcodes_to_constituencies
 def create_member
   @member_skip = 0
   @members = []

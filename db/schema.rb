@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_26_160827) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_27_112118) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "constituencies", force: :cascade do |t|
     t.string "name"
-    t.integer "constituency_id"
+    t.string "constituency_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "seat_vacant"
@@ -51,6 +51,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_26_160827) do
     t.integer "index_of_multiple_deprivation"
     t.float "distance_to_station"
     t.float "average_income"
+    t.integer "constituency_id"
+    t.string "constituency_name"
   end
 
   create_table "users", force: :cascade do |t|
