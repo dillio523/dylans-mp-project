@@ -3,7 +3,7 @@ class FixDatabaseIssues < ActiveRecord::Migration[7.0]
     # implemented suggested changes from database consistency checker,
     # Change the type of the member_id and constituency_id columns to bigint
     change_column :members, :member_id, :bigint
-    change_column :constituencies, :constituency_id, :bigint
+    change_column :constituencies, :constituency_id, 'bigint USING CAST(constituency_id AS bigint)'
 
     # Add a foreign key constraint for the constituency_id column in the postcodes table
     add_foreign_key :postcodes, :constituencies, column: :constituency_id
