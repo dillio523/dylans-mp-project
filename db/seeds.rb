@@ -2,28 +2,37 @@ require 'csv'
 require 'activerecord-import'
 require 'smarter_csv'
 
-
 def link_postcodes_to_constituencies
-  # Load the CSV file and parse it into a Ruby hash
-  constituency_codes = SmarterCSV.process(File.open('/Users/dylandeehan/Downloads/postcodeCSV/constituency_codes.csv')).each_with_object({}) { |row, hash| hash[row[:PCON20CD]] = row[:PCON20NM] }
-  # Find all the Postcode records that have a constituency_code
-  postcodes = Postcode.where.not(constituency_code: nil)
-  puts "these are the postcodes #{postcodes.inspect}"
-  # Iterate over the Postcode records
+  # Get all postcodes that have a non-nil constituency name
+  postcodes = Postcode.where.not(constituency_name: nil)
+  total_postcodes = postcodes.count
+  counter = 0
+
+  puts "Starting postcode linking..."
+
   postcodes.each do |postcode|
     # Find the Constituency record with the matching name
-    constituency = Constituency.find_by(name: constituency_codes[postcode.constituency_code])
+    constituency = Constituency.find_by(name: postcode.constituency_name)
     if constituency
       # Set the constituency_id on the Postcode record
       postcode.constituency_id = constituency.id
       postcode.save!
     end
+
+    counter += 1
+    print_percentage_processed(counter, total_postcodes)
+  rescue => e
+    puts "Error linking postcode #{postcode.postcode} to constituency #{postcode.constituency_name}"
+    puts e.message
   end
+
+  puts "Completed postcode linking"
 end
 
-
-
-
+def print_percentage_processed(counter, total_postcodes)
+  percentage = (counter.to_f / total_postcodes.to_f) * 100
+  puts "#{percentage}% of postcodes linked"
+end
 
 
 def seed_postcodes(csv_file_path)
@@ -38,14 +47,14 @@ def seed_postcodes(csv_file_path)
     data << extract_row_data(row)
     counter += 1
     print_progress(counter, total_postcodes)
-    break if counter == 5000
+    # break if counter == 5000
   end
 
   puts "Total number of postcodes: #{total_postcodes}"
 
   Postcode.import(data, validate: false, parallel: true, batch_size: 1000) do |import|
     import.on_duplicate_key_update = [:postcode]
-    import.on_batch_complete { |batch_results| print_percentage_processed(batch_results, total_postcodes) }
+    import.on_batch_complete { |batch_results| print_percentage_processed_batch(batch_results, total_postcodes) }
   end
 
   puts "Completed postcode seed"
@@ -64,7 +73,8 @@ def extract_row_data(row)
     constituency_code: row["Constituency Code"],
     index_of_multiple_deprivation: row["Index of Multiple Deprivation"],
     distance_to_station: row["Distance to station"],
-    average_income: row["Average income"]
+    average_income: row["Average income"],
+    constituency_name: row["Constituency"]
   }
 end
 
@@ -72,7 +82,7 @@ def print_progress(counter, total_postcodes)
   puts "Processed #{counter} out of #{total_postcodes} postcodes" if counter % 1000 == 0
 end
 
-def print_percentage_processed(batch_results, total_postcodes)
+def print_percentage_processed_batch(batch_results, total_postcodes)
   counter = batch_results.sum { |r| r[:num_inserted] }
   percentage = (counter.to_f / total_postcodes.to_f) * 100
   puts "#{percentage}% of postcodes processed"

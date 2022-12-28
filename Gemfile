@@ -7,6 +7,9 @@ gem "rest-client"
 
 gem 'smarter_csv', '~> 1.7', '>= 1.7.1'
 
+gem 'database_consistency', group: :development, require: false
+
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 

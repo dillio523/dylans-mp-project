@@ -112,6 +112,8 @@ GEM
     connection_pool (2.3.0)
     crass (1.0.6)
     csv (3.2.6)
+    database_consistency (1.7.1)
+      activerecord (>= 3.2)
     date (3.3.2)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
@@ -334,6 +336,7 @@ DEPENDENCIES
   capybara
   capybara-lockstep
   csv (~> 3.2)
+  database_consistency
   dotenv-rails
   erb_lint
   good_migrations
