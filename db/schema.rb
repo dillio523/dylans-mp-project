@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_24_142256) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_29_141626) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -34,6 +34,25 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_24_142256) do
     t.string "thumbnail_url"
     t.integer "party_id"
     t.integer "member_id"
+  end
+
+  create_table "postcodes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "postcode"
+    t.float "latitude"
+    t.float "longitude"
+    t.string "county"
+    t.string "district"
+    t.string "ward"
+    t.integer "population"
+    t.string "region"
+    t.string "constituency_code"
+    t.integer "index_of_multiple_deprivation"
+    t.float "distance_to_station"
+    t.float "average_income"
+    t.integer "constituency_id"
+    t.string "constituency_name"
   end
 
   create_table "users", force: :cascade do |t|

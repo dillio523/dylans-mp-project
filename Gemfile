@@ -5,6 +5,11 @@ ruby "3.1.2"
 
 gem "rest-client"
 
+gem 'smarter_csv', '~> 1.7', '>= 1.7.1'
+
+gem 'database_consistency', group: :development, require: false
+
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
@@ -58,3 +63,7 @@ group :test do
   gem "shoulda-matchers"
   gem "webdrivers"
 end
+
+gem "csv", "~> 3.2"
+
+gem "activerecord-import", "~> 1.4"
