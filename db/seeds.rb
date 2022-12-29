@@ -3,27 +3,24 @@ require 'activerecord-import'
 require 'smarter_csv'
 
 def link_postcodes_to_constituencies
-  # Get all postcodes that have a non-nil constituency name
-  postcodes = Postcode.where.not(constituency_name: nil)
+  # Get all postcodes that have a non-empty constituency name
+  postcodes = Postcode.where.not(constituency_name: [nil, ""])
   total_postcodes = postcodes.count
   counter = 0
 
   puts "Starting postcode linking..."
 
-  postcodes.each do |postcode|
-    # Find the Constituency record with the matching name
-    constituency = Constituency.find_by(name: postcode.constituency_name)
-    if constituency
-      # Set the constituency_id on the Postcode record
-      postcode.constituency_id = constituency.id
-      postcode.save!
-    end
+  # Use a single update query to update all postcodes at once
+  Postcode.where.not(constituency_name: [nil, ""]).update_all(
+    "constituency_id = (SELECT constituency_id FROM constituencies WHERE name = postcodes.constituency_name)"
+  )
 
+  # Print progress every 1000 postcodes
+  postcodes.each do |postcode|
     counter += 1
-    print_percentage_processed(counter, total_postcodes)
-  rescue => e
-    puts "Error linking postcode #{postcode.postcode} to constituency #{postcode.constituency_name}"
-    puts e.message
+    if counter % 1000 == 0
+      print_percentage_processed(counter, total_postcodes)
+    end
   end
 
   puts "Completed postcode linking"
@@ -90,7 +87,6 @@ end
 
 seed_postcodes("/Users/dylandeehan/Downloads/postcodeCSV/postcodes.csv")
 
-
 def create_constituency
   puts "making"
   @constituency_skip = 0
@@ -143,6 +139,7 @@ create_constituency
     seat_vacant: seat_vacant
   )
 end
+
 link_postcodes_to_constituencies
 def create_member
   @member_skip = 0
