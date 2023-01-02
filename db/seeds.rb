@@ -4,6 +4,8 @@ require 'smarter_csv'
 # measuring how seed takes to run for comparison
 start_time = Time.now
 def link_postcodes_to_constituencies
+  postcodes = Postcode.where.not(constituency_name: [nil, ""])
+
   # Get all postcodes that have a non-empty constituency name
   total_postcodes = postcodes.count
   counter = 0
@@ -24,9 +26,6 @@ def link_postcodes_to_constituencies
   end
 
   puts "Completed postcode linking"
-  end_time = Time.now
-  postcode_linking_duration = end_time - start_time
-  puts "Total duration for link_postcodes_to_constituencies: #{postcode_linking_duration / 60} minutes"
 end
 
 def print_percentage_processed(counter, total_postcodes)
@@ -36,14 +35,11 @@ end
 
 
 def seed_postcodes(csv_file_path)
-  start_time = Time.now
   data = []
   total_postcodes = 0
   counter = 0
 
   puts "Starting postcode seed..."
-  puts "starting csv each"
-  csv_each_start_time = Time.now
   CSV.foreach(csv_file_path, headers: true) do |row|
     total_postcodes += 1
     data << extract_row_data(row)
@@ -51,27 +47,14 @@ def seed_postcodes(csv_file_path)
     print_progress(counter, total_postcodes)
     # break if counter == 5000
   end
-  puts "completed csv_each"
-  csv_each_end_time = Time.now
-  csv_each_duration = csv_each_end_time - csv_each_start_time
-  puts "Total time taken for csv_each: #{csv_each_duration / 60} minutes"
 
   puts "starting postcode import"
-  postcode_import_start_time = Time.now
 
   Postcode.import(data, validate: false, parallel: true, batch_size: 1000) do |import|
     import.on_duplicate_key_update = [:postcode]
     import.on_batch_complete { |batch_results| print_percentage_processed_batch(batch_results, total_postcodes) }
   end
-  puts "finished postcode_import"
-  postcode_import_end_time = Time.now
-  postcode_import_duration = postcode_import_end_time - postcode_import_start_time
-  puts "postcode import duration: #{postcode_import_duration / 60} minutes"
-
   puts "Completed postcode seed"
-  end_time = Time.now
-  seed_postcode_duration = end_time - start_time
-  puts "Total time taken for seed_postcodes: #{seed_postcode_duration / 60} minutes"
 end
 
 def extract_row_data(row)
@@ -93,7 +76,7 @@ def extract_row_data(row)
 end
 
 def print_progress(counter, total_postcodes)
-  puts "Processed #{counter} out of #{total_postcodes} postcodes" if counter % 1000 == 0
+  puts "Processed #{counter} out of #{total_postcodes} postcodes" if counter % 100000 == 0
 end
 
 def print_percentage_processed_batch(batch_results, total_postcodes)
@@ -105,7 +88,6 @@ end
 seed_postcodes("/Users/dylandeehan/Downloads/postcodeCSV/postcodes.csv")
 
 def create_constituency
-  start_time = Time.now
   puts "starting create_constituency"
   @constituency_skip = 0
   @constituencies = []
@@ -138,9 +120,6 @@ def create_constituency
       break if @repos.empty?
     end
   end
-  end_time = Time.now
-  create_constit_duration = end_time - start_time
-  puts "Total time taken for create_constituency: #{create_constit_duration / 60} minutes"
 end
 
 # call the create_constituency function
@@ -148,7 +127,6 @@ create_constituency
 
 # iterate over the @constituencies array and create a new constituency object for each constituency
 puts "starting constituency_each"
-constituency_each_start_time = Time.now
 @constituencies.each do |constituency_data|
   # see if the seat is vacant so can set when constituency is created
   if constituency_data["currentRepresentation"].nil?
@@ -162,15 +140,10 @@ constituency_each_start_time = Time.now
     seat_vacant: seat_vacant
   )
 end
-puts "Completed constituency_each"
-constituency_each_end_time = Time.now
-constituency_duration = constituency_each_end_time - constituency_each_start_time
-puts "Total time taken for constituency_each: #{constituency_duration / 60} minutes"
 
 link_postcodes_to_constituencies
 def create_member
   puts "starting create_member"
-  start_time = Time.now
   @member_skip = 0
   @members = []
   loop do
@@ -201,9 +174,6 @@ def create_member
     end
   end
   puts "Completed create_member"
-  end_time = Time.now
-  create_memb_duration = end_time - start_time
-  puts "Total time taken for create_member: #{create_memb_duration / 60} minutes"
 end
 
 # call the create_member function
@@ -212,7 +182,6 @@ create_member
 
 # iterate over the @members array and create a new Member object for each member
 puts "starting members_each"
-members_each_start_time = Time.now
 @members.each do |member_data|
   Member.create!(
     member_id: member_data["id"],
@@ -228,5 +197,5 @@ members_each_start_time = Time.now
 end
 puts "Completed members_each"
 end_time = Time.now
-total_time = End_time - start_time
+total_time = end_time - start_time
 puts "Total time taken: #{total_time / 60} minutes"
