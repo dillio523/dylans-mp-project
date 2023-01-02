@@ -1,0 +1,11 @@
+<h1><%= @postcode.postcode %></h1>
+<h2>Your constituency is <%= @constituency.name %></h2>
+<h2>Elected member is: <%= @member.name_display_as %> </h2>
+<h2>Party: <%= @member.party  %></h2>
+<h2> representative since <%= @member.membership_start_date %> </h2>
+<img src="<%= @member.thumbnail_url %>" alt="<% @member.name_display_as %>">
+
+
+
+<br>
+<%= link_to "search again", search_path  %>

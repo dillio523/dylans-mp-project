@@ -16,6 +16,12 @@ Rails.application.routes.draw do
   get '/success', to: 'users#success'
   resources :members
   resources :constituencies
+  resources :postcodes
+  get '/search', to: 'postcodes#search'
+
+
+
+
 
 
   # Defines the root path route ("/")
