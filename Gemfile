@@ -9,6 +9,12 @@ gem 'smarter_csv', '~> 1.7', '>= 1.7.1'
 
 gem 'database_consistency', group: :development, require: false
 
+gem 'webpacker'
+gem "font-awesome-sass", "~> 6.1"
+gem "sassc-rails"
+gem "simple_form", github: "heartcombo/simple_form"
+gem "autoprefixer-rails"
+
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
