@@ -73,3 +73,5 @@ end
 gem "csv", "~> 3.2"
 
 gem "activerecord-import", "~> 1.4"
+
+gem "cssbundling-rails", "~> 1.1"

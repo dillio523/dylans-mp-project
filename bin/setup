@@ -2,13 +2,14 @@
 
 def setup!
   within_project_root do
-    run  "bundle check > /dev/null 2>&1 || bundle install"
-    run  "yarn install" if File.exist?("yarn.lock")
-    run  "overcommit --install" if overcommit_present?
+    run "bundle check > /dev/null 2>&1 || bundle install"
+    run "yarn install" if File.exist?("yarn.lock")
+    run "overcommit --install" if overcommit_present?
     copy "example.env", ".env.development"
     test_local_env_contains_required_keys
-    run  "RAILS_ENV=test bin/rails db:drop db:create"
-    run  "SKIP_TEST_DATABASE=1  bin/rails tmp:create db:prepare db:seed"
+    # Commenting out code related to database
+    # run "RAILS_ENV=test bin/rails db:drop db:create"
+    # run "SKIP_TEST_DATABASE=1 bin/rails tmp:create db:prepare db:seed"
   end
 end
 
@@ -24,6 +25,7 @@ def within_project_root(&block)
   Dir.chdir(File.expand_path("..", __dir__), &block)
 end
 
+
 def overcommit_present?
   with_clean_bundler_env do
     system("which overcommit > /dev/null 2>&1") && system("overcommit -v > /dev/null 2>&1")
@@ -31,7 +33,7 @@ def overcommit_present?
 end
 
 def run(command)
-  log(:blue, "run  #{command}")
+  log(:blue, "run #{command}")
   with_clean_bundler_env do
     system(command, exception: true)
   end

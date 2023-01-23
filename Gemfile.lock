@@ -121,6 +121,8 @@ GEM
     concurrent-ruby (1.1.10)
     connection_pool (2.3.0)
     crass (1.0.6)
+    cssbundling-rails (1.1.2)
+      railties (>= 6.0.0)
     csv (3.2.6)
     database_consistency (1.7.1)
       activerecord (>= 3.2)
@@ -367,6 +369,7 @@ DEPENDENCIES
   byebug
   capybara
   capybara-lockstep
+  cssbundling-rails (~> 1.1)
   csv (~> 3.2)
   database_consistency
   dotenv-rails
