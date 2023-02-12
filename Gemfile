@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
-
+gem 'jsbundling-rails'
+gem 'webpack'
 ruby "3.1.2"
 
 gem "rest-client"
@@ -9,7 +10,6 @@ gem 'smarter_csv', '~> 1.7', '>= 1.7.1'
 
 gem 'database_consistency', group: :development, require: false
 
-gem 'webpacker'
 gem "font-awesome-sass", "~> 6.1"
 gem "sassc-rails"
 gem "simple_form", github: "heartcombo/simple_form"
@@ -28,7 +28,7 @@ gem "pg", "~> 1.1"
 gem "pgcli-rails"
 gem "puma", "~> 5.0"
 gem "rack-canonical-host"
-gem "rails", "~> 7.0.4"
+gem "rails", "~> 7.0.2.4"
 gem "sprockets-rails"
 gem "stimulus-rails"
 gem "turbo-rails"
