@@ -1,15 +1,7 @@
-# 🚀 Welcome to your new awesome project!
-
-This project has been created using **webpack-cli**, you can now run
-
-```
-npm run build
-```
-
-or
-
-```
-yarn build
-```
-
-to bundle your application
+A project that allows you to find your politician from entering your postcode, using government parliament API  ONS data
+Features to be added
+- Graphical representation of voting record
+- Declared Financial interests and leaderboard for highest earners
+- Attendance Record
+- Voter turnout
+- Transport and Healthcare rating of constituency

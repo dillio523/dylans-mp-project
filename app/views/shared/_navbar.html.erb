@@ -1,18 +1,21 @@
 <header class="header">
         <nav class="navbar">
-            <a href="#" class="nav-logo">WebDev.</a>
+            <a href="<%= root_path %>" class="nav-logo">
+              <img src="<%= asset_path 'parliament-logo.png' %>" alt="Logo">
+            </a>
             <ul class="nav-menu">
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Services</a>
+                    <%= link_to "Search for My MP", search_path, class: "nav-link" %>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Blog</a>
+                    <%= link_to "List of Members", members_path, class: "nav-link"  %>
+
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">About</a>
+                    <%= link_to "Sign Up", users_new_path, class: "nav-link"  %>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Contact</a>
+                    <a href="#" class="nav-link">Most Absent MP's</a>
                 </li>
             </ul>
             <div class="hamburger">
