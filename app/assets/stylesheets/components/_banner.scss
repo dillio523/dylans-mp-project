@@ -1,21 +1,72 @@
-// .homebanner {
-//   background-size: cover;
-//   background-position: center;
-//   padding: 150px 0;
-//   width: 100%;
-// }
+.banner {
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-// .homebanner h1 {
-//   margin: 0;
-//   color: white;
-//   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-//   font-size: 32px;
-//   font-weight: bold;
-// }
+.banner h1 {
+  margin: 0;
+  // color: white;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  font-size: 9vw;
+  font-weight: 700;
+  font-family: spectral;
+  // margin-bottom: 1rem;
 
-// .homebanner p {
-//   font-size: 20px;
-//   color: white;
-//   opacity: .7;
-//   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.banner p {
+  max-width: 100%;// Specific CSS for your home-page
+  /* Basic styling */
+  font-family: spectral;
+  font-weight: 100;
+  word-wrap: break-word;
+  font-size: 4vw;
+  color: $light-shades;
+  opacity: .9;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  margin-bottom: 7rem;
+}
+
+
+
+  .banner-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: $primary;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 1rem;
+  }
+
+// .banner-btn {
+//   display: inline-block;
+//   padding: 10px 20px;
+//   // background-color: #333;
+//   // color: #fff;
+//   text-decoration: none;
+//   border-radius: 5px;
 // }
+.banner-container p, .container h1, .container a {
+  text-align: center;
+}
+.banner-container .banner-btn {
+  display: inline-block;
+  padding: 15px 30px;
+  background-color: $light-accent;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  margin: 0 auto;
+  font-size: 18px;
+}

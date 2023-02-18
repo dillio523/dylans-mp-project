@@ -1,86 +1,14 @@
 // Specific CSS for your home-page
 /* Basic styling */
 
-
-.banner h1 {
-  margin: 0;
-  // color: white;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  font-size: 9vw;
-  font-weight: 700;
-  font-family: spectral;
-  // margin-bottom: 1rem;
-
-}
-
-.banner p {
-  max-width: 100%;// Specific CSS for your home-page
-  /* Basic styling */
-  font-family: spectral;
-  font-weight: 100;
-  word-wrap: break-word;
-  font-size: 4vw;
-  color: #9CC5A1;
-  opacity: .9;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  margin-bottom: 7rem;
-}
-  .banner {
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-
-  .banner-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #333;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-top: 1rem;
-  }
-
-// .banner-btn {
-//   display: inline-block;
-//   padding: 10px 20px;
-//   background-color: #333;
-//   color: #fff;
-//   text-decoration: none;
-//   border-radius: 5px;
-// }
-.container p, .container h1, .container a {
-  text-align: center;
-}
-.container .banner-btn {
-  display: inline-block;
-  padding: 15px 30px;
-  background-color: #f09c96;
-  color: #ffffff;
-  text-decoration: none;
-  border-radius: 5px;
-  margin-top: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 200px;
-  margin: 0 auto;
-  font-size: 18px;
-}
-
 .header-1 {
-  color: #ffffff;
+  color: $light-shades;
 }
 
 .header-2 {
-  color: #BFDFCF;
+  color: $light-shades;
 }
 
 .header-3 {
-  color: #49A078;
+  color: $light-shades;
 }
