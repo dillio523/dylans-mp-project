@@ -8,10 +8,18 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+@import "pages/search";
 
 body {
-  background-color: #BFDFCF;
+  background-color: $dark-shades;
 }
-.container {
-  max-width: 100;
+
+body {
+  font-size: 16px; /* this sets the base font size */
+}
+
+@media only screen and (max-width: 768px) {
+  body {
+    font-size: 14px; /* this changes the font size for smaller screens */
+  }
 }

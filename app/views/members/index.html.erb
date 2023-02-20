@@ -1,13 +1,26 @@
+<div class="member-container">
 <% @members.each do |member| %>
 
 <div class="member-card">
-  <img src="<%= member.thumbnail_url %>" alt="<%= member.name_display_as  %>">>
-  <div class="container">
-    <h4><b><%= member.name_display_as %></b></h4>
-    <p><%= member.party %></p>
+  <div class="avatar">
+    <img src="<%= member.thumbnail_url %>" alt="<%= member.name_display_as  %>">
+  </div>
+  <div class="title">
+    <%= member.name_display_as %>
+  </div>
+  <div class="description">
+    <%= member.party %>
+  </div>
+  <div class="social">
+    <ul>
+      <li><i class="fab fa-facebook"></i></li>
+      <li><i class="fab fa-twitter"></i></li>
+      <li><i class="fas fa-link"></i></li>
+    </ul>
   </div>
 </div>
 
 
 
 <% end %>
+</div>

@@ -1,3 +1,80 @@
 // Import page-specific CSS files here.
 @import "home";
+// @import "members";
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap");
 
+h1 {
+  color: $dark-shades;
+}
+
+
+.member-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // height: 20vh;
+  flex-direction: column;
+}
+
+.member-container .member-card * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  // font-family: "Roboto Mono", monospace;
+}
+
+.member-container .member-card body {
+  background-color: #f9fafa;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.member-container .member-card {
+  border: 2px solid $primary;
+  box-shadow: 5px 6px 0px $primary;
+  transition: 0.3s all;
+  border-radius: 3px;
+  background-color: #fff;
+  padding: 21px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  width: 340px;
+  max-width: 95%;
+
+  .avatar {
+    img {
+      border-radius: 50%;
+      border: 4px solid $primary;
+      max-width: 90%;
+    }
+  }
+
+  .title {
+    font-size: 26px;
+    margin-top: 18px;
+    color: $primary;
+  }
+
+  .description {
+    font-size: 17px;
+    margin-top: 18px;
+    color: #64707d;
+  }
+
+  .social {
+    ul {
+      margin-top: 22px;
+      list-style-type: none;
+      li {
+        display: inline;
+        font-size: 22px;
+        cursor: pointer;
+        color: $primary;
+      }
+    }
+  }
+}
