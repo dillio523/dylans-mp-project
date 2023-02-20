@@ -12,3 +12,7 @@
 .header-3 {
   color: $light-shades;
 }
+.parent-container {
+  display: flex;
+  flex-direction: column;
+}

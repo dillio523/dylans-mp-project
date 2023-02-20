@@ -16,28 +16,28 @@ legend ~ div.form-check:first-of-type {
 .banner {
   background-size: cover;
   background-position: center;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100vh;
 }
 
 .banner h1 {
   margin: 0;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-  font-size: 9vw;
+  font-size: 3.2em;
   font-weight: 700;
   font-family: spectral;
 }
 
 .banner p {
-  max-width: 100%;
+  max-width: 90%;
   /* Basic styling */
   font-family: spectral;
   font-weight: 100;
   word-wrap: break-word;
-  font-size: 4vw;
+  font-size: 1.5rem;
   color: #F1F4EE;
   opacity: 0.9;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
@@ -74,6 +74,10 @@ legend ~ div.form-check:first-of-type {
   font-size: 18px;
 }
 
+.banner-headers {
+  font-size: 2vw;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -91,10 +95,6 @@ li {
 
 a {
   text-decoration: none;
-}
-
-.header {
-  border-bottom: 1px solid #E2E8F0;
 }
 
 .navbar {
@@ -184,6 +184,68 @@ a {
     transform: translateY(-8px) rotate(-45deg);
   }
 }
+.tiles {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tile {
+  width: 25%;
+  padding: 20px;
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .tile {
+    width: 100%;
+  }
+}
+.tile-card {
+  background-color: #ffffff;
+  width: 90%;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px #000000;
+  margin: 20px auto;
+}
+
+.tile-card p {
+  color: #333333;
+  font-size: 16px;
+  line-height: 1.5;
+  padding: 10px;
+}
+
+.tile-card h1 {
+  font-family: spectral;
+  font-size: 22;
+}
+
+.tile-logo {
+  max-width: 50px;
+}
+
+.card {
+  background-color: #ffffff;
+  width: 300px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px #000000;
+  margin: 20px auto;
+}
+
+.card p {
+  color: #333333;
+  font-size: 16px;
+  line-height: 1.5;
+  padding: 10px;
+}
+
+.card h1 {
+  font-family: spectral;
+  font-size: 22;
+}
+
 /* Basic styling */
 .header-1 {
   color: #F1F4EE;
@@ -195,6 +257,11 @@ a {
 
 .header-3 {
   color: #F1F4EE;
+}
+
+.parent-container {
+  display: flex;
+  flex-direction: column;
 }
 
 h1 {
@@ -263,29 +330,103 @@ h1 {
   color: #BF80A4;
 }
 
+/* search scss */
+.search-page {
+  display: flex;
+  align-items: center;
+  height: 90vh; /* set the height to the full viewport height */
+}
+.search-page *,
+.search-page *:before,
+.search-page *:after {
+  box-sizing: border-box;
+}
+.search-page body {
+  font-family: "Open Sans", sans-serif;
+}
+.search-page p {
+  font-family: "Muli", sans-serif;
+}
+.search-page h1 {
+  font-family: "Muli", sans-serif;
+  text-transform: uppercase;
+}
+.search-page .search-container {
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+}
+.search-page .search-txt-input {
+  padding: 12px 20px;
+  font-size: 14px;
+  border: 1px solid #c8c8c8;
+  border-right: 0px;
+  border-top-left-radius: 4px 4px;
+  border-bottom-left-radius: 4px 4px;
+  width: 200px;
+  height: 65px;
+}
+.search-page .search-button {
+  padding: 12px 15px;
+  font-size: 16px;
+  outline: none;
+  text-align: center;
+  text-decoration: none;
+  color: #ffffff;
+  border: solid 1px #c8c8c8;
+  border-right: 0px;
+  border-top-right-radius: 4px 4px;
+  border-bottom-right-radius: 4px 4px;
+  position: relative;
+  left: -5px;
+  height: 65px;
+  margin-top: 0px;
+}
+.search-page button[type=submit] {
+  background-color: #BF80A4;
+  color: #fff;
+  cursor: pointer;
+}
+.search-page button[type=submit]:hover {
+  background-color: #A79F6D;
+  color: #fff;
+  cursor: pointer;
+}
+.search-page #standard-3 .search-txt-input {
+  width: 200px;
+  -webkit-transition: width 0.5s ease-out;
+  transition: width 0.5s ease-out;
+}
+@media (max-width: 767px) {
+  .search-page #standard-3 .search-txt-input {
+    width: 120px;
+  }
+}
+.search-page #standard-3 input[type=text]:focus {
+  width: 500px;
+  outline: none;
+}
+@media (max-width: 767px) {
+  .search-page #standard-3 input[type=text]:focus {
+    width: 190px;
+  }
+}
+.search-page .search-icon {
+  vertical-align: middle;
+}
+
 body {
   background-color: #736470;
 }
 
-.card {
-  background-color: #ffffff;
-  width: 300px;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 5px #000000;
-  margin: 20px auto;
+body {
+  font-size: 16px; /* this sets the base font size */
 }
 
-.card p {
-  color: #333333;
-  font-size: 16px;
-  line-height: 1.5;
-  padding: 10px;
-}
-
-.card h1 {
-  font-family: spectral;
-  font-size: 22;
+@media only screen and (max-width: 768px) {
+  body {
+    font-size: 14px; /* this changes the font size for smaller screens */
+  }
 }
 
 /*# sourceMappingURL=application.css.map */

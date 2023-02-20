@@ -1,7 +1,26 @@
 
 <%# <h1>Search Postcodes</h1> %>
-
-<%= form_tag '/search', method: :get do %>
-  <%= text_field_tag :q %>
-  <%= submit_tag 'Search' %>
-<% end %>
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!--
+<div class="search-container-parent">
+  <div class="search-container-child">
+    <%= form_tag '/search', method: :get do %>
+    <%= text_field_tag :q %>
+    <%= submit_tag 'Search' %>
+    <% end %>
+  </div>
+</div>
+-->
+<div class="search-page">
+  <div class="search-container">
+    <form id="standard-3" method="get" action="" id="form2">
+      <input type="text" class="search-txt-input" name="q" maxlength="100"placeholder="Postcode">
+      <button type="submit" form="form2" class="search-button">
+        <span class="icon search-icon">
+          <i class="material-icons">search</i>
+        </span>
+      </button>
+    </form>
+  </div>
+</div>

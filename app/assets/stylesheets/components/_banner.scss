@@ -1,18 +1,25 @@
+.banner-container {
+  // height: 80vh;
+
+
+}
 .banner {
   background-size: cover;
   background-position: center;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100vh;
+  // margin-top: 45px;
+  // margin-top: 65px;
 }
 
 .banner h1 {
   margin: 0;
   // color: white;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  font-size: 9vw;
+  font-size: 3.2em;
   font-weight: 700;
   font-family: spectral;
   // margin-bottom: 1rem;
@@ -20,12 +27,12 @@
 }
 
 .banner p {
-  max-width: 100%;// Specific CSS for your home-page
+  max-width: 90%;// Specific CSS for your home-page
   /* Basic styling */
   font-family: spectral;
   font-weight: 100;
   word-wrap: break-word;
-  font-size: 4vw;
+  font-size: 1.5rem;
   color: $light-shades;
   opacity: .9;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
@@ -69,4 +76,7 @@
   width: 200px;
   margin: 0 auto;
   font-size: 18px;
+}
+.banner-headers {
+  font-size: 2vw;
 }

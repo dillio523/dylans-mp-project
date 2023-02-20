@@ -8,30 +8,18 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+@import "pages/search";
 
 body {
   background-color: $dark-shades;
 }
-// .container {
-//   // max-width: 100;
-// }
 
-.card {
-  background-color: #ffffff;
-  width: 300px;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 5px #000000;
-  margin: 20px auto;
+body {
+  font-size: 16px; /* this sets the base font size */
 }
 
-.card p {
-  color: #333333;
-  font-size: 16px;
-  line-height: 1.5;
-  padding: 10px;
-}
-.card h1 {
-  font-family: spectral;
-  font-size: 22;
+@media only screen and (max-width: 768px) {
+  body {
+    font-size: 14px; /* this changes the font size for smaller screens */
+  }
 }
